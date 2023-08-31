@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas - Ball Animation</title>
+    <!-- CSS Canvas Ball -->
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        text-align: center;
+      }
+      .canvas-holder {
+        width: 650px;
+        padding-top: 20px;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body onLoad="bouncing();">
+    <!-- Canvas Ball -->
+    <h1>Bolaa Bergerak</h1>
+    <div class="canvas-holder">
+      <canvas
+        id="myCanvas"
+        width="650"
+        height="250"
+        style="border: 3px solid #000000"
+      >
+      </canvas>
+    </div>
+
+    <!-- Javascript Canvas Ball -->
+    <script>
+      var context;
+
+      var initialX3 = 650;
+      var initialY3 = 250;
+
+      var x3 = 10;
+      var y3 = 10;
+      function bouncing() {
+        context = myCanvas.getContext("2d");
+        setInterval(draw, 10);
+      }
+
+      function draw() {
+        context.clearRect(0, 0, 650, 250);
+
+        context.beginPath();
+        context.fillStyle = "red";
+
+        context.arc(initialX3, initialY3, 20, 0, Math.PI * 2, true);
+        context.closePath();
+        context.fill();
+
+        if (initialX3 < 0 || initialX3 > 650) x3 = -x3;
+
+        if (initialY3 < 0 || initialY3 > 250) y3 = -y3;
+        initialX3 += x3;
+        initialY3 += y3;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Watermark 1</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: grey;
+      }
+
+      .container {
+        background-color: white;
+        text-align: center;
+        max-width: 400px;
+        width: 100%;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      input[type="file"] {
+        margin-bottom: 10px;
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+      }
+
+      #output-image {
+        max-width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Watermark App</h1>
+      <form action="proses.php" id="watermark-form" enctype="multipart/form-data">
+        <label for="image">Choose an image:</label>
+        <input type="file" id="image" accept="image/*" required />
+        <label for="logo">Choose a logo (PNG only):</label>
+        <input type="file" id="logo" accept=".png" required />
+        <button type="submit">Generate Watermarked Image</button>
+      </form>
+      <div class="output">
+        <h2>Output Image</h2>
+        <img id="output-image" src="uploads/" alt="Watermarked Image" />
+      </div>
+    </div>
+    <script>
+
+    </script>
+  </body>
+</html>

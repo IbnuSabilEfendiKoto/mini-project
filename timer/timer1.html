@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timer 1</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .timer {
+        text-align: center;
+      }
+
+      .display {
+        font-size: 50px;
+      }
+
+      button {
+        font-size: 20px;
+        padding: 5px 10px;
+        margin: 5px;
+        background-color: aqua;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="timer">
+      <div class="display" id="display">000:00</div>
+      <button class="start" id="startBtn">Start</button>
+      <button class="stop" id="stopBtn">Stop</button>
+      <button class="reset" id="resetBtn">Reset</button>
+    </div>
+    <script>
+      const display = document.getElementById("display");
+      const startBtn = document.getElementById("startBtn");
+      const stopBtn = document.getElementById("stopBtn");
+      const resetBtn = document.getElementById("resetBtn");
+
+      let timerInterval;
+      let time = 0;
+
+      function updateDisplay() {
+        const seconds = Math.floor(time / 100);
+        const centiseconds = time % 100;
+        display.textContent = 
+        `${seconds.toString().padStart(3, "0")}:
+        ${centiseconds.toString().padStart(2, "0")}`;
+      }
+      function startTimer() {
+        if (!timerInterval) {
+          timerInterval = setInterval(() => {
+            time++;
+            if (time === 100000) {
+              stopTimer();
+            }
+            updateDisplay();
+          }, 10);
+        }
+      }
+
+      function stopTimer() {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+
+      function resetTimer() {
+        stopTimer();
+        time = 0;
+        updateDisplay();
+      }
+
+      startBtn.addEventListener("click", startTimer);
+      stopBtn.addEventListener("click", stopTimer);
+      resetBtn.addEventListener("click", resetTimer);
+
+      updateDisplay();
+    </script>
+  </body>
+</html>
